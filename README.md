@@ -8,3 +8,5 @@ Implement the functionality of chat using Firebase
 Send image to other users
 
 Send Emoji
+
+Project URL : https://chatapp-whatsapp-mustafa.netlify.app/
