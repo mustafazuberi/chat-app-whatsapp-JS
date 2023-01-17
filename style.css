@@ -1,0 +1,182 @@
+body,
+html {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-image: linear-gradient(100deg, #dddbd1, #d2bddc);
+}
+
+.chat-msgs-body {
+  background-image: url("images/bg-3.jpg");
+}
+
+.top {
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  background-color: #00a783;
+  z-index: -1;
+}
+
+.chat-box {
+  margin-top: 15px;
+  width: 100%;
+  height: calc(100% - 30px);
+}
+
+@media screen and (max-width: 500px) {
+  .chat-box {
+    margin-top: 0px;
+    width: 100%;
+    height: calc(100% - 0px);
+  }
+}
+
+.profile-pic {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.friend-pic {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.name {
+  font-weight: 600;
+  color: #000;
+}
+
+.under-name {
+  font-size: 14px;
+  line-height: 15px;
+  max-height: 15px;
+}
+
+.icon {
+  font-size: 20px;
+  color: #9ca1a3;
+}
+
+.chat-pic {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+.recieve {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 10px 15px;
+  display: inline-block;
+  border-top-left-radius: 0px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.time {
+  font-size: 10px;
+  color: #9ca1a3;
+  float: right;
+  margin-left: 1%;
+  margin-top: 3%;
+}
+
+.sent {
+  background-color: #d9fdd3;
+  border-radius: 1rem;
+  padding: 10px 15px;
+  /* display: inline-block; */
+  border-top-right-radius: 0px;
+  float: right;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+#messages,
+#ChatsList {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 81vh;
+}
+
+@media only screen and (max-height : 680px) {
+  #messages,
+  #ChatsList {
+    height: 77vh;
+  }
+}
+@media only screen and (max-height : 660px) {
+  #messages,
+  #ChatsList {
+    height: 75vh;
+  }
+}
+@media only screen and (max-height : 630px) {
+  #messages,
+  #ChatsList {
+    height: 73vh;
+  }
+}
+@media only screen and (max-height : 600px) {
+  #messages,
+  #ChatsList {
+    height: 71vh;
+  }
+}
+
+.friend-div {
+  height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px !important;
+}
+
+#emoji {
+  position: absolute;
+  top: -30vh;
+  background-color: white;
+  border-radius: 5px;
+  /* border: 1px solid black; */
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+#emoji #myTabContent {
+  height: 22vh;
+}
+
+/* Scroll bar css w3 schools */
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #cacdd1;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #cacdd1;
+}
+
+/* Loader */
+
+.sigin-btn {
+  width: 40%;
+}

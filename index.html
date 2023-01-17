@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WhatsApp</title>
+  <!-- custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <!--  -->
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+</head>
+
+<body>
+  <div class="d-none" id="idToHide"></div>
+  <!-- loader -->
+  <div class="se-pre-con"></div>
+  <!--  -->
+
+  <span class="top"></span>
+  <div class="container bg-white chat-box shadow-lg rounded">
+    <div class="row h-100" id="ChatsList">
+      <div class="col-md-4 px-0 d-none h-100 d-md-block" id="side-1">
+        <div class="card h-100">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-1 col-sm-1 col-md-1">
+                <i onclick="hideChatList()" class="fas fa-arrow-left fa-2x my-3 d-md-none"
+                  style="font-size: 20px; cursor: pointer"></i>
+              </div>
+
+              <div class="col-8 col-sm-8 col-md-7">
+                <img src="images/profile.jpg" class="profile-pic" id="profile-user" alt="" />
+              </div>
+
+              <!-- my -->
+              <div class="col-2 col-sm-2 col-md-2">
+                <i class="fa-solid fa-message my-2" style="font-size: 25px; color: #b1aeae; cursor: pointer"></i>
+              </div>
+
+              <div class="dropdown col-1 col-sm-1 col-md-1">
+                <a class="" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <i class="fas fa-ellipsis-v my-2" style="font-size: 25px; color: #616161; cursor: pointer"></i>
+                </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li>
+                    <a class="dropdown-item" id="user-name" href="#">Username</a>
+                  </li>
+
+                  <li>
+                    <a class="dropdown-item d-none" id="lnkSignIn" onclick="signInFirebase()" href="#">Sigin
+                    </a>
+                  </li>
+
+                  <li>
+                    <a class="dropdown-item" id="lnkLogout" onclick="logout()" href="#">Logout</a>
+                  </li>
+
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <ul class="list-group" id="friendChats">
+            <li class="list-group-item" style="background-color: #f8f8f8">
+              <input type="text" placeholder="Search New Chat" class="form-control form-rounded" />
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-8 px-0" id="side-2">
+        <div id="chatPanel" class="card" style="display: none">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-1 col-sm-1 col-md-1 col-lg-1">
+                <i onclick="showChatList()" class="fas fa-list my-2 d-md-none" style="cursor: pointer"></i>
+              </div>
+              <div class="col-2 col-sm-2 col-md-2 col-lg-1">
+                <img src="images/profile.jpg" class="profile-pic" id="friend-profile" alt="" />
+              </div>
+              <div class="col-4 col-sm-4 col-md-4 col-lg-6">
+                <div id="friend-name" class="name">Any Name</div>
+                <div class="under-name">9:08 PM</div>
+              </div>
+
+              <div class="col-5 col-sm-5 col-md-5 col-lg-4 icon">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-paperclip mx-4" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                  aria-expanded="false"></i>
+                <!--image  -->
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li>
+                    <a class="dropdown-item" id="user-name" onclick="chooseImage()">Image
+                      <input class="d-none" onchange="sendImage(this)" type="file" id="imageFile" accept="image/*" />
+                    </a>
+                  </li>
+
+                  <li><a class="dropdown-item">document</a></li>
+
+                  <li><a class="dropdown-item">Camera</a></li>
+                </ul>
+
+                <!--  -->
+                <i class="fas fa-ellipsis-v"></i>
+              </div>
+            </div>
+          </div>
+          <!-- recieve -->
+          <div id="messages" onclick="hideEmoji()" class="card-body chat-msgs-body">
+            <!-- <div class="row">
+              <div class="col-2 col-sm-1 col-md-1">
+                <img src="images/profile.jpg" class="chat-pic" alt="" />
+              </div>
+              <div class="col-6 col-sm-7 col-md-7">
+                <p class="recieve">
+                  This is a received message from friend
+                  <span class="time">1:29 PM </span>
+                </p>
+              </div>
+            </div> -->
+
+            <!-- sent -->
+            <!-- <div class="row justify-content-end">
+              <div class="col-6 col-sm-7 col-md-7">
+                <p class="sent">
+                  This is a sent message <span class="time">1:29 PM </span>
+                </p>
+              </div>
+              <div class="col-2 col-sm-1 col-md-1">
+                <img src="images/profile.jpg" class="chat-pic" alt="" />
+              </div>
+            </div> -->
+          </div>
+
+          <div class="card-footer">
+            <!-- emoji -->
+            <div class="row" style="position: relative">
+              <div class="col-md-12 d-none" id="emoji">
+                <!-- tabs -->
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#smiley"
+                      type="button" role="tab" aria-controls="home" aria-selected="true">
+                      Smiley
+                    </button>
+                  </li>
+
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#skin" type="button"
+                      role="tab" aria-controls="contact" aria-selected="false">
+                      Love
+                    </button>
+                  </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade show active" id="smiley" role="tabpanel" aria-labelledby="home-tab">
+                    .
+                    <a href="#" onclick="getEmoji(this)" style="text-decoration: none; font-size: 25px">&#128512;</a>
+                  </div>
+                  <div class="tab-pane fade" id="skin" role="tabpanel" aria-labelledby="profile-tab">
+                    ...
+                  </div>
+                </div>
+
+                <!--  -->
+              </div>
+            </div>
+
+            <!--  -->
+            <div class="row">
+              <div class="col-2 col-md-1">
+                <i class="far fa-grin fa-2x" style="cursor: pointer" onclick="showEmoji()"></i>
+              </div>
+              <div class="col-8 col-md-10">
+                <input onclick="" id="msg-inp" type="text" placeholder="Type message here"
+                  onfocus="hideEmoji(),changeIcon()" onchange="changeIcon()" class="form-control" />
+              </div>
+
+              <!-- <div id="voice-icon" class="col-2 col-md-1">
+                                <i class="fas fa-microphone fa-2x" onclick="sendMessage()" style="cursor: pointer;"></i>
+                            </div> -->
+              <div class="col-2 col-md-1">
+                <i class="fas fa-play fa-2x" onclick="sendMessage()" style="cursor: pointer"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="divStart" class="text-center h-100" style="background-color: #f0f2f5; color: #3f3e3e">
+          <i class="fas fa-comments my-5" style="font-size: 170px"></i>
+
+          <h2 style="font-size: 28px">
+            Sign-In with google account and start chatting
+          </h2>
+          <br />
+          <button class="btn btn-primary sigin-btn w-50" id="sigin-in-btn" onclick="signInFirebase()">
+            Sign-In With Google</button><br /><br />
+          <button type="button" onclick="showChatList()" class="btn btn-dark d-md-none w-50">
+            Get Started
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <!-- SweetAlerts -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!--  -->
+
+  <!-- Bootstrap JS  -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <!--  -->
+
+  <!-- font-awesome link -->
+  <script src="https://kit.fontawesome.com/9bfdfb2c8c.js" crossorigin="anonymous"></script>
+  <!--  -->
+
+  <!-- Custom Javascript Files -->
+  <script type="module" src="chat.js"></script>
+  <script type="module" src="firebase.js"></script>
+  <!--  -->
+</body>
+
+</html>
